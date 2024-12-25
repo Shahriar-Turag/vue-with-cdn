@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.lordicon.com/lordicon.js"></script>
+
+  <title>Vue test</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>{{count}}</h1>
+    <button @click="increment">Click to increment</button>
+
+    <div v-if="showIcon">
+      <lord-icon src="https://cdn.lordicon.com/abhwievu.json" trigger="hover" style="width:250px;height:250px">
+    </div>
+    </lord-icon>
+  </div>
+
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          count: 0,
+          stopped: false,
+          showIcon: false
+        }
+      },
+      methods: {
+        increment() {
+          if (this.stopped) {
+            this.count = 'Stop this nonsense'
+            this.showIcon = true
+            return
+          }
+
+          this.count++
+
+          if (this.count === 10) {
+            this.count = '🤚😒'
+            console.log(this.count)
+            this.count = '🤚😒'
+            this.stopped = true
+          }
+        }
+      }
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
